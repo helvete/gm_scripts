@@ -17,7 +17,7 @@
         if (preEl.length) {
             var textArea = document.getElementsByClassName('hui-input entry-notes');
             var patternJira = /([A-Z0-9]{2,}-[0-9]+)[\n\t ]+([\s\S]*)$/g;
-            var patternGithub = /^([a-zA-Z0-9'\(\)=:\/\n\r -]+) #([0-9]+)[\s]{0,}$/g;
+            var patternGithub = /^([a-zA-Z0-9'\(\)=:\/\n\r _-]+) #([0-9]+)[\s]{0,}$/g;
             for (var el in textArea) {
                 var current = textArea[el];
                 // reconvert payload to be inline in a format like `TICKET-1234: yada yada` (copy&paste from JIRA board/ticket detail)
@@ -36,11 +36,11 @@ var tt = window.setInterval(
     function() {
         var runningButt = document.getElementsByClassName('hui-button-running');
         if (runningButt.length) {
-    	    for (var rb in runningButt) {
-         	    var it = runningButt[rb];
-        	    it.click();
-              break;
-     	    }
+            for (var rb in runningButt) {
+                var it = runningButt[rb];
+                it.click();
+                break;
+            }
         }
     },
     30
@@ -60,6 +60,7 @@ function highlightMissCat() {
     var patternEonTicketCode = /^E24S[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
     var patternHcTicketCode02 = /^[0-9]+: (.)*$/g;
+    var patternHcTicketCode03 = /^CLP-[0-9]+: (.)*$/g;
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
     rows.forEach(function(row) {
@@ -68,7 +69,12 @@ function highlightMissCat() {
         var msg = row.querySelectorAll('span.notes')[0].children[0].innerHTML;
 
         var ticketCodeMatch = false;
-        [patternEonTicketCode, patternHcTicketCode01, patternHcTicketCode02].forEach(function(pattern) {
+        [
+            patternEonTicketCode,
+            patternHcTicketCode01,
+            patternHcTicketCode02,
+            patternHcTicketCode03
+        ].forEach(function(pattern) {
             if (msg.match(pattern)) {
                 ticketCodeMatch = true;
                 return;
@@ -88,7 +94,10 @@ function highlightMissCat() {
             projectEl.style.backgroundColor = '#f21c0a';
             return;
         }
-        if (msg.match(patternHcTicketCode01) || msg.match(patternHcTicketCode02)) {
+        if (msg.match(patternHcTicketCode01)
+            || msg.match(patternHcTicketCode02)
+            || msg.match(patternHcTicketCode03)
+        ) {
             if (project.match(patternHcProject)) {
                 return;
             }
@@ -102,7 +111,7 @@ var xx = window.setInterval(highlightMissCat, 1000);
 
 // DEBUG button
 //(function() {
-//	var maindiv = document.getElementById('main');
+//  var maindiv = document.getElementById('main');
 //  maindiv.innerHTML += '<input type="submit" id="do" name="do" value="Do shit!" class="hui-button hui-button-large hui-button-cancel js-close" />';
 //  document.getElementById('do').onclick = highlightMissCat;
 //})();
