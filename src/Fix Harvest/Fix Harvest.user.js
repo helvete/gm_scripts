@@ -34,7 +34,7 @@
  */
 var tt = window.setInterval(
     function() {
-        var runningButt = document.getElementsByClassName('hui-button-running');
+        var runningButt = document.getElementsByClassName('pds-button-running');
         if (runningButt.length) {
             for (var rb in runningButt) {
                 var it = runningButt[rb];
