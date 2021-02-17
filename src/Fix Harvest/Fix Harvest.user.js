@@ -13,9 +13,9 @@
 (function() {
     var to = window.setInterval(run, 1000);
     function run() {
-        var preEl = document.getElementsByClassName('hui-dialog-open');
+        var preEl = document.getElementsByClassName('hui-dialog-medium');
         if (preEl.length) {
-            var textArea = document.getElementsByClassName('hui-input entry-notes');
+            var textArea = document.getElementsByClassName('pds-input entry-notes');
             var patternJira = /([A-Z0-9]{2,}-[0-9]+)[\n\t ]+([\s\S]*)$/g;
             var patternGithub = /^([a-zA-Z0-9'\(\)=:\/\n\r _-]+) #([0-9]+)[\s]{0,}$/g;
             for (var el in textArea) {
