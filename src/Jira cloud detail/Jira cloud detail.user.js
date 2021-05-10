@@ -7,11 +7,20 @@
 // ==/UserScript==
 
 (function() {
+    function getRightColEl() {
+        var stor;
+        document.querySelectorAll('[data-test-id]').forEach(function (el) {
+            if (el.dataset.testId == 'issue.views.issue-details.issue-layout.right-most-column') {
+                stor = el.parentNode;
+            }
+        });
+        return stor;
+    }
+
     var ticker = window.setInterval(ticketdetail, 1000);
-    function ticketdetail() {
-        var rightblockz = document.getElementsByClassName('zredB');
-        if (rightblockz.length) {
-            var rightblock = rightblockz[0];
+    function ticketdetail(){
+        var rightblock = getRightColEl();
+        if (rightblock != null) {
             rightblock.style.width = '0%';
             rightblock.style.paddingRight = '0';
             window.clearInterval(ticker);
