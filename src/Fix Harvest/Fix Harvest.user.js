@@ -56,11 +56,13 @@ function highlightMissCat() {
     var patternEonProject = /^\[EON(.)*$/g;
     var patternHcProject = /^\[HCI(.)*$/g;
     var patternArgoProject = /^\[ARG(.)*$/g;
+    var patternAitProject = /^\[AIT(.)*$/g;
 
     var patternEonTicketCode = /^E24S[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
     var patternHcTicketCode02 = /^[0-9]+: (.)*$/g;
     var patternHcTicketCode03 = /^CLP-[0-9]+: (.)*$/g;
+    var patternAitTicketCode = /^AIT00[0-9]{1}-[0-9]+: (.)*$/g;
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
     rows.forEach(function(row) {
@@ -73,7 +75,8 @@ function highlightMissCat() {
             patternEonTicketCode,
             patternHcTicketCode01,
             patternHcTicketCode02,
-            patternHcTicketCode03
+            patternHcTicketCode03,
+            patternAitTicketCode
         ].forEach(function(pattern) {
             if (msg.match(pattern)) {
                 ticketCodeMatch = true;
@@ -104,14 +107,14 @@ function highlightMissCat() {
             projectEl.style.backgroundColor = '#f21c0a';
             return;
         }
+        if (msg.match(patternAitTicketCode)) {
+            if (project.match(patternAitProject)) {
+                return;
+            }
+            projectEl.style.backgroundColor = '#f21c0a';
+            return;
+        }
     });
 }
 
 var xx = window.setInterval(highlightMissCat, 1000);
-
-// DEBUG button
-//(function() {
-//  var maindiv = document.getElementById('main');
-//  maindiv.innerHTML += '<input type="submit" id="do" name="do" value="Do shit!" class="hui-button hui-button-large hui-button-cancel js-close" />';
-//  document.getElementById('do').onclick = highlightMissCat;
-//})();
