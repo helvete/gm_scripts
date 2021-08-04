@@ -62,6 +62,7 @@ function highlightMissCat() {
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
     var patternHcTicketCode02 = /^[0-9]+: (.)*$/g;
     var patternHcTicketCode03 = /^CLP-[0-9]+: (.)*$/g;
+    var patternHcTicketCode04 = /^HRO-[0-9]+: (.)*$/g;
     var patternAitTicketCode = /^AIT00[0-9]{1}-[0-9]+: (.)*$/g;
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
@@ -76,6 +77,7 @@ function highlightMissCat() {
             patternHcTicketCode01,
             patternHcTicketCode02,
             patternHcTicketCode03,
+            patternHcTicketCode04,
             patternAitTicketCode
         ].forEach(function(pattern) {
             if (msg.match(pattern)) {
@@ -100,6 +102,7 @@ function highlightMissCat() {
         if (msg.match(patternHcTicketCode01)
             || msg.match(patternHcTicketCode02)
             || msg.match(patternHcTicketCode03)
+            || msg.match(patternHcTicketCode04)
         ) {
             if (project.match(patternHcProject)) {
                 return;
