@@ -69,7 +69,7 @@ function highlightMissCat() {
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
     rows.forEach(function(row) {
-        var projectEl = row.querySelectorAll('div.project-client')[0].children[0];
+        var projectEl = row.querySelectorAll('div.entry-project')[0];
         var project = projectEl.innerHTML;
         var msg = row.querySelectorAll('div.notes')[0].children[0].innerHTML;
 
