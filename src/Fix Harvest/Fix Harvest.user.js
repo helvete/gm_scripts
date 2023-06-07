@@ -58,6 +58,9 @@ function highlightMissCat() {
     var patternArgoProject = /^\[ARG(.)*$/g;
     var patternAitProject = /^\[AIT(.)*$/g;
     var patternDataliteProject = /^\[DTL(.)*$/g;
+    var patternAgrobotProject = /^\[TRS(.)*$/g;
+    var patternRingLocalProject = /^\[RNG(.)*$/g;
+    var patternMallRRProject = /^\[MGR(.)*$/g;
 
     var patternEonTicketCode = /^E24S[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
@@ -66,6 +69,9 @@ function highlightMissCat() {
     var patternHcTicketCode04 = /^HRO-[0-9]+: (.)*$/g;
     var patternAitTicketCode = /^AIT00[0-9]{1}-[0-9]+: (.)*$/g;
     var patternDataliteTicketCode = /^EIP-[0-9]+: (.)*$/g;
+    var patternRingLocalTicketCode = /^RNG[0-9]+-[0-9]+: (.)*$/g;
+    var patternAgrobotTicketCode = /^TRS[0-9]+-[0-9]+: (.)*$/g;
+    var patternMallRRTicketCode = /^RAD-[0-9]+: (.)*$/g;
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
     rows.forEach(function(row) {
@@ -81,7 +87,10 @@ function highlightMissCat() {
             patternHcTicketCode03,
             patternHcTicketCode04,
             patternAitTicketCode,
-            patternDataliteTicketCode
+            patternDataliteTicketCode,
+            patternRingLocalTicketCode,
+            patternAgrobotTicketCode,
+            patternMallRRTicketCode
         ].forEach(function(pattern) {
             if (msg.match(pattern)) {
                 ticketCodeMatch = true;
@@ -122,6 +131,27 @@ function highlightMissCat() {
         }
         if (msg.match(patternDataliteTicketCode)) {
             if (project.match(patternDataliteProject)) {
+                return;
+            }
+            projectEl.style.backgroundColor = '#f21c0a';
+            return;
+        }
+        if (msg.match(patternAgrobotTicketCode)) {
+            if (project.match(patternAgrobotProject)) {
+                return;
+            }
+            projectEl.style.backgroundColor = '#f21c0a';
+            return;
+        }
+        if (msg.match(patternRingLocalTicketCode)) {
+            if (project.match(patternRingLocalProject)) {
+                return;
+            }
+            projectEl.style.backgroundColor = '#f21c0a';
+            return;
+        }
+        if (msg.match(patternMallRRTicketCode)) {
+            if (project.match(patternMallRRProject)) {
                 return;
             }
             projectEl.style.backgroundColor = '#f21c0a';
