@@ -61,6 +61,7 @@ function highlightMissCat() {
     var patternAgrobotProject = /^\[TRS(.)*$/g;
     var patternRingLocalProject = /^\[RNG(.)*$/g;
     var patternMallRRProject = /^\[MGR(.)*$/g;
+    var patternAILinkBuilderProject = /^\[AYI(.)*$/g;
 
     var patternEonTicketCode = /^E24S[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
@@ -72,6 +73,7 @@ function highlightMissCat() {
     var patternRingLocalTicketCode = /^RNG[0-9]+-[0-9]+: (.)*$/g;
     var patternAgrobotTicketCode = /^TRS[0-9]+-[0-9]+: (.)*$/g;
     var patternMallRRTicketCode = /^RAD-[0-9]+: (.)*$/g;
+    var patternAILinkBuilderTicketCode = /^AYI[0-9]+-[0-9]+: (.)*$/g;
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
     rows.forEach(function(row) {
@@ -90,7 +92,8 @@ function highlightMissCat() {
             patternDataliteTicketCode,
             patternRingLocalTicketCode,
             patternAgrobotTicketCode,
-            patternMallRRTicketCode
+            patternMallRRTicketCode,
+            patternAILinkBuilderTicketCode
         ].forEach(function(pattern) {
             if (msg.match(pattern)) {
                 ticketCodeMatch = true;
@@ -152,6 +155,13 @@ function highlightMissCat() {
         }
         if (msg.match(patternMallRRTicketCode)) {
             if (project.match(patternMallRRProject)) {
+                return;
+            }
+            projectEl.style.backgroundColor = '#f21c0a';
+            return;
+        }
+        if (msg.match(patternAILinkBuilderTicketCode)) {
+            if (project.match(patternAILinkBuilderProject)) {
                 return;
             }
             projectEl.style.backgroundColor = '#f21c0a';
