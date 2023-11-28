@@ -62,7 +62,7 @@ function highlightMissCat() {
     var patternRingLocalProject = /^\[RNG(.)*$/g;
     var patternMallRRProject = /^\[MGR(.)*$/g;
     var patternAILinkBuilderProject = /^\[AYI(.)*$/g;
-    var patternWokProject = /^\[EON028(.)*$/g;
+    var patternWokProject = /^\[EGD005(.)*$/g;
 
     var patternEonTicketCode = /^E24S[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
