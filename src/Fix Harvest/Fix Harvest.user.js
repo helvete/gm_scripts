@@ -18,13 +18,9 @@
             var textArea = document.getElementsByClassName('pds-input entry-notes');
             var patternJira = /([A-Z0-9]{2,}-[0-9]+)[\n\t ]+([\s\S]*)$/g;
             var patternGithub = /^([a-zA-Z0-9'\(\)=:\/\n\r _-]+) #([0-9]+)[\s]{0,}$/g;
-            for (var el in textArea) {
-                var current = textArea[el];
-                // reconvert payload to be inline in a format like `TICKET-1234: yada yada` (copy&paste from JIRA board/ticket detail)
-                current.value = current.value.replace(patternJira, '$1: $2').trimStart();
-                // reconvert payload to `1234: yada yada` from smth like `yada yada #1234` (copy&paste from Github)
-                current.value = current.value.replace(patternGithub, '$2: $1').trimStart();
-            }
+            var ta = textArea[0];
+            ta.value = ta.value.replace(patternJira, '$1: $2').trimStart();
+            ta.value = ta.value.replace(patternGithub, '$2: $1').trimStart();
         }
     }
 })();
