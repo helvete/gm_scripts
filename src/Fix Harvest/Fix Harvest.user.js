@@ -60,7 +60,7 @@ function highlightMissCat() {
     var patternAILinkBuilderProject = /^\[AYI(.)*$/g;
     var patternWokProject = /^\[EGD005(.)*$/g;
 
-    var patternEonTicketCode = /^E24S[A-Z0-9-]+: (.)*$/g;
+    var patternEonTicketCode = /^E24[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
     var patternHcTicketCode02 = /^[0-9]+: (.)*$/g;
     var patternHcTicketCode03 = /^CLP-[0-9]+: (.)*$/g;
