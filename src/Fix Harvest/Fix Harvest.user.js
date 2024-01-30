@@ -60,7 +60,8 @@ function highlightMissCat() {
     var patternAILinkBuilderProject = /^\[AYI(.)*$/g;
     var patternWokProject = /^\[EGD005(.)*$/g;
 
-    var patternEonTicketCode = /^E24[A-Z0-9-]+: (.)*$/g;
+    var patternEonTicketCode01 = /^E24[A-Z0-9-]+: (.)*$/g;
+    var patternEonTicketCode02 = /^AMM[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
     var patternHcTicketCode02 = /^[0-9]+: (.)*$/g;
     var patternHcTicketCode03 = /^CLP-[0-9]+: (.)*$/g;
@@ -81,7 +82,8 @@ function highlightMissCat() {
 
         var ticketCodeMatch = false;
         [
-            patternEonTicketCode,
+            patternEonTicketCode01,
+            patternEonTicketCode02,
             patternHcTicketCode01,
             patternHcTicketCode02,
             patternHcTicketCode03,
@@ -106,7 +108,9 @@ function highlightMissCat() {
             }
             return;
         }
-        if (msg.match(patternEonTicketCode)) {
+        if (msg.match(patternEonTicketCode01)
+            || msg.match(patternEonTicketCode02)
+        ) {
             if (project.match(patternEonProject)) {
                 return;
             }
