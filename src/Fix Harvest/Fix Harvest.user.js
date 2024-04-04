@@ -27,7 +27,7 @@
 
 /**
  * Allow submitting 0 tracked time w/o starting timer
- */
+
 var tt = window.setInterval(
     function() {
         var runningButt = document.getElementsByClassName('pds-button-running');
@@ -41,6 +41,7 @@ var tt = window.setInterval(
     },
     30
 );
+*/
 
 /**
  * Highligh tracking records with discrepancies:
@@ -59,6 +60,7 @@ function highlightMissCat() {
     var patternMallRRProject = /^\[MGR(.)*$/g;
     var patternAILinkBuilderProject = /^\[AYI(.)*$/g;
     var patternWokProject = /^\[EGD005(.)*$/g;
+    var patternCasProject = /^\[TWH(.)*$/g;
 
     var patternEonTicketCode01 = /^E24[A-Z0-9-]+: (.)*$/g;
     var patternEonTicketCode02 = /^AMM[A-Z0-9-]+: (.)*$/g;
@@ -73,6 +75,7 @@ function highlightMissCat() {
     var patternMallRRTicketCode = /^RAD-[0-9]+: (.)*$/g;
     var patternAILinkBuilderTicketCode = /^AYI[0-9]+-[0-9]+: (.)*$/g;
     var patternWokTicketCode = /^WOK-[0-9]+: (.)*$/g;
+    var patternCasTicketCode = /^TWH[0-9]+-[0-9]+: (.)*$/g;
 
     var rows = document.querySelectorAll('tr[id^=timesheet_day_entry_]');
     rows.forEach(function(row) {
@@ -94,7 +97,8 @@ function highlightMissCat() {
             patternAgrobotTicketCode,
             patternMallRRTicketCode,
             patternAILinkBuilderTicketCode,
-            patternWokTicketCode
+            patternWokTicketCode,
+            patternCasTicketCode
         ].forEach(function(pattern) {
             if (msg.match(pattern)) {
                 ticketCodeMatch = true;
@@ -172,6 +176,13 @@ function highlightMissCat() {
         }
         if (msg.match(patternWokTicketCode)) {
             if (project.match(patternWokProject)) {
+                return;
+            }
+            projectEl.style.backgroundColor = '#f21c0a';
+            return;
+        }
+        if (msg.match(patternCasTicketCode)) {
+            if (project.match(patternCasProject)) {
                 return;
             }
             projectEl.style.backgroundColor = '#f21c0a';
