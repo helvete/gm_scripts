@@ -14,6 +14,14 @@
                 stor = el.parentNode;
             }
         });
+        if (stor) {
+            return stor;
+        }
+        document.querySelectorAll('[data-testid]').forEach(function (el) {
+            if (el.dataset.testid == 'issue.views.issue-details.issue-layout.right-most-column') {
+                stor = el.parentNode;
+            }
+        });
         return stor;
     }
 
@@ -23,6 +31,7 @@
         if (rightblock != null) {
             rightblock.style.width = '0%';
             rightblock.style.paddingRight = '0';
+            rightblock.style.flex = 'unset';
             window.clearInterval(ticker);
             console.log('right-pane collapsed')
         } else {
