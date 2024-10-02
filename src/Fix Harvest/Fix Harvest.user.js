@@ -16,7 +16,7 @@
         var preEl = document.getElementsByClassName('pds-dialog-open');
         if (preEl.length) {
             var textArea = document.getElementsByClassName('pds-input entry-notes');
-            var patternJira = /([A-Z0-9]{2,}-[0-9]+)[\n\t ]+([\s\S]*)$/g;
+            var patternJira = /^([A-Z0-9]{2,}-[0-9]+)[\n\t ]+([\s\S]*)$/g;
             var patternGithub = /^([a-zA-Z0-9'\(\)=:\/\n\r _-]+) #([0-9]+)[\s]{0,}$/g;
             var ta = textArea[0];
             ta.value = ta.value.replace(patternJira, '$1: $2').trimStart();
@@ -66,6 +66,7 @@ function highlightMissCat() {
 
     var patternEonTicketCode01 = /^E24[A-Z0-9-]+: (.)*$/g;
     var patternEonTicketCode02 = /^AMM[A-Z0-9-]+: (.)*$/g;
+    var patternEonTicketCode03 = /^SC[A-Z0-9-]+: (.)*$/g;
     var patternHcTicketCode01 = /^EKO-[0-9]+: (.)*$/g;
     var patternHcTicketCode02 = /^[0-9]+: (.)*$/g;
     var patternHcTicketCode03 = /^CLP-[0-9]+: (.)*$/g;
@@ -93,6 +94,7 @@ function highlightMissCat() {
         [
             patternEonTicketCode01,
             patternEonTicketCode02,
+            patternEonTicketCode03,
             patternHcTicketCode01,
             patternHcTicketCode02,
             patternHcTicketCode03,
@@ -124,6 +126,7 @@ function highlightMissCat() {
         }
         if (msg.match(patternEonTicketCode01)
             || msg.match(patternEonTicketCode02)
+            || msg.match(patternEonTicketCode03)
         ) {
             if (project.match(patternEonProject)) {
                 return;
