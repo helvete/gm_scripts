@@ -80,6 +80,7 @@ function highlightMissCat() {
     var patternAgrobotTicketCode04 = /^EP-[0-9]+: (.)*$/g;
     var patternAgrobotTicketCode05 = /^BCK-[0-9]+: (.)*$/g;
     var patternAgrobotTicketCode06 = /^PRO-[0-9]+: (.)*$/g;
+    var patternAgrobotTicketCode07 = /^(APZ|ANN)-[0-9]+: (.)*$/g;
     var patternMallRRTicketCode = /^RAD-[0-9]+: (.)*$/g;
     var patternAILinkBuilderTicketCode = /^AYI[0-9]+-[0-9]+: (.)*$/g;
     var patternWokTicketCode = /^WOK-[0-9]+: (.)*$/g;
@@ -110,6 +111,7 @@ function highlightMissCat() {
             patternAgrobotTicketCode04,
             patternAgrobotTicketCode05,
             patternAgrobotTicketCode06,
+            patternAgrobotTicketCode07,
             patternMallRRTicketCode,
             patternAILinkBuilderTicketCode,
             patternWokTicketCode,
@@ -169,6 +171,7 @@ function highlightMissCat() {
             || msg.match(patternAgrobotTicketCode04)
             || msg.match(patternAgrobotTicketCode05)
             || msg.match(patternAgrobotTicketCode06)
+            || msg.match(patternAgrobotTicketCode07)
         ) {
             if (project.match(patternAgrobotProject)) {
                 return;
